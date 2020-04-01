@@ -1,0 +1,26 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Data" #>
+
+<#@ parameter name="creaetClassName" type="System.String" #>
+<#@ parameter name="fieldCount" type="System.Int32" #>
+<#@ parameter name="typeNames" type="System.Collections.Generic.List<System.String>" #>
+<#@ parameter name="fieldNames" type="System.Collections.Generic.List<System.String>" #>
+
+namespace DataTable
+{
+	public class <#= this.creaetClassName #>
+	{
+<#
+	for (int i = 0; i < fieldCount; i++)
+	{
+#>
+<# if (typeNames[i].Equals("ignore")) continue; #>
+		public <#= typeNames[i] #> <#= fieldNames[i] #>;
+<# } #>
+	}
+}
